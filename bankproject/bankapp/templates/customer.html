@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="heading">Customer Account Details</h2>
+<div class="container">
+    <form method="POST" class="sub-container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+    <h2 class="heading">Filtered Customers</h2>
+    <div class="container">
+        <form method="GET" action="{% url 'customer' %}" class="sub-container">
+            <ul><label for="account_type">Account Type:</label>
+            <select name="account_type" id="account_type">
+                <option value="">All</option>
+                <option value="Savings">Savings</option>
+                <option value="Credit">Credit</option>
+            </select></ul>
+            <ul><label for="account_number">Account Number:</label>
+            <input type="text" name="account_number" id="account_number" placeholder="Search by Account Number"></ul>
+            <input type="submit" value="Filter">
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Account Type</th>
+                <th>Account Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.name }}</td>
+                <td>
+                    {% for account in customer.accounts.all %}
+                        {{ account.account_type }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for account in customer.accounts.all %}
+                        {{ account.account_number }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No customers found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
+
+{% endblock %}
