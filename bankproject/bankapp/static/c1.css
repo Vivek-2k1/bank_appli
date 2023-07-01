@@ -21,6 +21,33 @@
     text-align: center;
 }
 
+.sub-container{
+  background-color: #FFF4F4;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.sub-container input[type="text"],
+.sub-container input[type="email"],
+.sub-container textarea,
+.sub-container input[type="date"],
+.sub-container input[type="number"]{
+  background-color: #F7E6C4;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.sub-container select{
+  background-color: #F7E6C4;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  width: 150px;
+  height: 25px;
+}
 
 .sub-container input[type="submit"] {
     background-color: #F1C376;
@@ -48,6 +75,9 @@
 table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 table th, table td {
@@ -57,8 +87,14 @@ table th, table td {
 }
 
 table th {
-  background-color: #f2f2f2;
+  background-color: #606C5D;
   font-weight: bold;
+  color: #FFF4F4;
+}
+
+table td,
+table td ul{
+  background-color: #F7E6C4;
 }
 
 table tr:hover {
